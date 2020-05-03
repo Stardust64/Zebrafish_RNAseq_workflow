@@ -1,14 +1,12 @@
 #!/bin/bash
-
 #SBATCH -J run_hisat2_test
 #SBATCH -o run_hisat2_test.o%j    # Name of stdout output file
 #SBATCH -e run_hisat2_test.e%j    # Name of stderr error file
 #SBATCH -p normal                 # Queue (partition) name
 #SBATCH -N 1                      # Total # of nodes
-#SBATCH -n 28                      # Total # of mpi tasks
+#SBATCH -n 28                     # Total # of mpi tasks
 #SBATCH -t 05:00:00               # Run time (hh:mm:ss) takes about 2hrs to run
 #SBATCH --mail-type=all           # Send email at begin and end of job
-#SBATCH -A UMaine                 # Allocation name (req'd if you have more than 1)
 
 module load gcc/7.1.0
 
