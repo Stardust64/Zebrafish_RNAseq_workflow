@@ -14,5 +14,5 @@ samtools index Path/to/output/sample.bam
 
 
 #Htseq Script Structure (counts aligned reads from a BAM file that overlap features in a reference .gtf annotation file):
-htseq-count --stranded=reverse -m union -f bam --order=name -t exon -i gene_id $WORK/data/GMPPB_mRNA/hisat2/SA22320.bam Path/to/reference/annotation.gtf > sample_counts.txt
+htseq-count --stranded=reverse -m union -f bam --order=name -t exon -i gene_id Path/to/sample.bam Path/to/reference/annotation.gtf > sample_counts.txt
 
