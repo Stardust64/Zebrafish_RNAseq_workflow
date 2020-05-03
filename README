@@ -1,0 +1,18 @@
+#Hello! This repository contains the scripts used on Stampede2 at TACC to analyze an unpublished mRNA sequencing Zebrafish dataset. The scripts should be run in to order of Trimmomatic, Hisat2, Samtools, and Htseq-count.
+
+#Trimmomatic Script Structure (trims off adapters and low quality sequences):
+java -jar ~/bin/trimmomatic.jar PE Path/to/input/R1/fastq.gz Path/to/input/R2/fastq.gz Path/to/output/R1_paired.fastq Path/to/output/R1_unpaired.fastq Path/to/output/R2_paired.fastq Path/to/output/R2_unpaired.fastq ILLUMINACLIP:Path/to/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+
+#Hisat2 Script Structure (Aligns trimmed reads to genome):
+hisat2 -p 8 --dta --rna-strandness RF -x Path/to/indexed/reference/genome.fa -1 Path/to/trimmed/R1_paired.fastq -2 Path/to/trimmed/R2_paired.fastq -S Path/to/output/sample.sam
+
+
+#Samtools Script Structure (converts SAM to BAM): 
+samtools sort -@ 6 -o Path/to/output/sample.bam Path/to/input/sample.sam
+samtools index Path/to/output/sample.bam
+
+
+#Htseq Script Structure (counts aligned reads from a BAM file that overlap features in a reference .gtf annotation file):
+htseq-count --stranded=reverse -m union -f bam --order=name -t exon -i gene_id $WORK/data/GMPPB_mRNA/hisat2/SA22320.bam Path/to/reference/annotation.gtf > sample_counts.txt
+
