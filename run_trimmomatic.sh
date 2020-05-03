@@ -1,13 +1,12 @@
-#SBATCH -J trimmer
-#SBATCH -o trimmer.o%j
-#SBATCH -e trimmer.e%j
-#SBATCH -p normal
-#SBATCH -N 1
-#SBATCH -n 28
-#SBATCH -t 05:00:00
-#SBATCH --mail-user=kayla.barton@maine.edu
-#SBATCH --mail-type=all
-#SBATCH -A UMaine
+#!/bin/bash
+#SBATCH -J run_trimmomatic
+#SBATCH -o run_trimmomatic.o%j    # Name of stdout output file
+#SBATCH -e run_trimmomatic.e%j    # Name of stderr error file
+#SBATCH -p normal                 # Queue (partition) name
+#SBATCH -N 1                      # Total # of nodes
+#SBATCH -n 28                     # Total # of mpi tasks
+#SBATCH -t 05:00:00               # Run time (hh:mm:ss) 
+#SBATCH --mail-type=all           # Send email at begin and end of job
 
 cd $WORK/data/GMPPB_mRNA/trimmed
 
