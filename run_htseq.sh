@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J htseq_7dpf_severe
-#SBATCH -o htseq_7dpf_severe.o%j       # Name of stdout output file
-#SBATCH -e htseq_7dpf_severe.e%j       # Name of stderr error file
+#SBATCH -J htseq_count
+#SBATCH -o htseq_count.o%j       # Name of stdout output file
+#SBATCH -e htseq_count.e%j       # Name of stderr error file
 #SBATCH -p normal                 # Queue (partition) name
 #SBATCH -N 1                      # Total # of nodes
 #SBATCH -n 28                     # Total # of mpi tasks
